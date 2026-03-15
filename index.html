@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrismaX Knowledge Protocol</title>
+    <!-- Include html2canvas for card download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for Futuristic Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Layers -->
+    <div class="bg-gradient">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+        <div class="orb orb4"></div>
+    </div>
+    <div class="bg-radial"></div>
+    <div class="bg-noise"></div>
+
+    <main class="app-container">
+        <!-- 1. START SCREEN -->
+        <section id="screen-start" class="screen active">
+            <div class="glass-panel main-panel">
+                <div class="liquid-glare"></div>
+
+                <img src="logo-prismax-02.png" alt="PrismaX Logo" class="brand-logo">
+                <h2 class="subtitle">Knowledge Protocol</h2>
+                <p class="description">Test your understanding of the Physical AI ecosystem.</p>
+
+                <div class="input-group">
+                    <label for="username" class="input-label">OPERATOR IDENTIFICATION</label>
+                    <input type="text" id="username" placeholder="Enter username..." autocomplete="off">
+                </div>
+
+                <button id="btn-start" class="btn-primary">Start Mission</button>
+            </div>
+        </section>
+
+        <!-- 2. QUIZ SCREEN -->
+        <section id="screen-quiz" class="screen">
+            <!-- Progress Area -->
+            <div class="glass-panel progress-panel">
+                <div class="progress-details">
+                    <span class="progress-text">Question <span id="current-q-num">1</span> / 10</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="glass-panel question-panel">
+                <div class="liquid-glare"></div>
+                <p id="question-text" class="question-text">Loading question...</p>
+            </div>
+
+            <!-- Answers List -->
+            <div id="answers-container" class="answers-container">
+                <!-- Buttons will be injected here -->
+            </div>
+        </section>
+
+        <!-- 3. RESULT SCREEN (Protocol Incomplete) -->
+        <section id="screen-result" class="screen result-screen">
+            <h1 id="result-title" class="result-heading">PROTOCOL INCOMPLETE</h1>
+
+            <div class="operator-card" id="result-operator-card">
+                <div class="card-inner">
+                    <img src="logo-prismax-02.png" class="card-logo" alt="PrismaX">
+                    <div class="card-avatar">
+                        <img src="https://via.placeholder.com/120?text=OPERATOR" class="profile-pic" id="result-profile-pic">
+                        <input type="file" class="upload-pic" id="result-upload" accept="image/*">
+                        <label for="result-upload" class="upload-label">Upload</label>
+                    </div>
+                    <h3 class="card-name result-card-name">Username</h3>
+                    <p class="card-clan">PrismaX Operator</p>
+                    <div class="card-stats">
+                        <div class="stat-tile">
+                            <span class="stat-label">ACC</span>
+                            <span class="stat-val result-card-accuracy">0</span>
+                        </div>
+                        <div class="stat-tile">
+                            <span class="stat-label">RANK</span>
+                            <span class="stat-val result-card-rank">C</span>
+                        </div>
+                        <div class="stat-tile">
+                            <span class="stat-label">TASK</span>
+                            <span class="stat-val">10/10</span>
+                        </div>
+                    </div>
+                    <p class="card-quote result-card-quote">"Metrics downloading..."</p>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button class="result-btn" onclick="downloadCard('result-operator-card')">Download</button>
+                <button class="result-btn" id="btn-retry">Retry</button>
+                <a href="#" target="_blank" class="result-btn result-share-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Share</a>
+            </div>
+        </section>
+
+        <!-- 4. PERFECT SCORE FLOW (Verification) -->
+        <section id="screen-perfect" class="screen result-screen">
+            <h1 class="result-heading glow-text">VERIFIED</h1>
+            
+            <div class="operator-card" id="perfect-operator-card">
+                <div class="card-inner">
+                    <img src="logo-prismax-02.png" class="card-logo" alt="PrismaX">
+                    <div class="card-avatar">
+                        <img src="https://via.placeholder.com/120?text=OPERATOR" class="profile-pic" id="perfect-profile-pic">
+                        <input type="file" class="upload-pic" id="perfect-upload" accept="image/*">
+                        <label for="perfect-upload" class="upload-label">Upload</label>
+                    </div>
+                    <h3 class="card-name perfect-card-name">Username</h3>
+                    <p class="card-clan">PrismaX Operator</p>
+                    <div class="card-stats">
+                        <div class="stat-tile">
+                            <span class="stat-label">ACC</span>
+                            <span class="stat-val">10</span>
+                        </div>
+                        <div class="stat-tile">
+                            <span class="stat-label">RANK</span>
+                            <span class="stat-val">S+</span>
+                        </div>
+                        <div class="stat-tile">
+                            <span class="stat-label">TASK</span>
+                            <span class="stat-val">10/10</span>
+                        </div>
+                    </div>
+                    <p class="card-quote perfect-card-quote">"Absolute precision metrics verified!"</p>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button class="result-btn" onclick="downloadCard('perfect-operator-card')">Download</button>
+                <button class="result-btn" id="btn-claim">Claim Reward</button>
+                <a href="#" target="_blank" class="result-btn perfect-share-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Share</a>
+            </div>
+        </section>
+
+        <!-- 5. MYSTERY BOX CONTAINER -->
+        <section id="screen-mystery" class="screen">
+            <!-- Floating Cube Layer -->
+            <div class="cube-viewport">
+                <div class="cube" id="mystery-cube">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
+            </div>
+
+            <div class="mystery-panel">
+                <p class="mystery-title">Mystery Reward Detected</p>
+                <button id="btn-open-box" class="btn-primary btn-mystery">Open</button>
+            </div>
+        </section>
+
+        <!-- 6. VIDEO OVERLAY -->
+        <section id="screen-video" class="screen">
+            <div class="video-panel glass-panel">
+                <div class="video-container" id="video-container">
+                    <!-- YouTube Iframe Injected Here -->
+                </div>
+                <p class="video-caption">Protocol Completed Successfully.</p>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>build by <a href="https://x.com/nixkhhil" target="_blank" rel="noopener noreferrer">nickhil</a></p>
+        </footer>
+    </main>
+
+    <!-- Flash Effect Layer for Mystery Box -->
+    <div id="flash-effect" class="flash-effect"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
