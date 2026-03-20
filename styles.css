@@ -766,7 +766,7 @@ input[type="text"]:focus {
     left: 0;
     width: 100%;
     text-align: center;
-    z-index: 5; /* Low z-index so it stays behind screens */
+    z-index: 20; /* High z-index so it stays clickable in front of screens */
     font-size: 0.75rem;
     color: var(--metallic-beige);
     opacity: 0.6;
